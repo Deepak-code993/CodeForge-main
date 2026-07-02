@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import inkwellLogo from './src/assets/inkwell_4k_wallpaper.png';
 
 const projects = [
   {
-    id: 'inkwell',
-    label: 'Ink',
-    title: 'InkWell',
-    tag: 'Lifestyle',
-    body: 'A personal diary experience for private notes, memories, and daily reflections.',
-    image: inkwellLogo,
-    accent: '#b99b62',
-    soft: '#f6f0e4',
-    glow: 'rgba(185, 155, 98, 0.28)'
+    id: 'booksell',
+    label: 'Book',
+    title: 'Booksell',
+    tag: 'Ecommerce',
+    body: 'An online bookstore with cart, search and checkout flow.',
+    accent: '#d97706',
+    soft: '#fff3dc',
+    glow: 'rgba(217, 119, 6, 0.28)'
   },
   {
     id: 'healthcare',

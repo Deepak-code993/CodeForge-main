@@ -472,7 +472,13 @@ function Hero({ onEnroll }) {
             </button>
           </div>
 
-          <p className="hero__alert"><span></span> alertfor first 50 students is <del>2000</del> 1599</p>
+          <p className="hero__alert" aria-label="Alert: price for first 50 students is rupees 1,599 instead of rupees 2,000">
+            <span className="hero__alert-dot" aria-hidden="true"></span>
+            <span className="hero__alert-copy">Alert for first 50 students: <del>Rs. 2,000</del> <strong>Rs. 1,599</strong></span>
+            <span className="hero__party-boom" aria-hidden="true">
+              <span></span>
+            </span>
+          </p>
         </div>
 
         <div className="hero__visual hero-slider" aria-label="CodeForge internship images">
