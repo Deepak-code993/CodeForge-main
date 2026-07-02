@@ -9,6 +9,7 @@ const projects = [
     tag: 'Lifestyle',
     body: 'A personal diary experience for private notes, memories, and daily reflections.',
     image: inkwellLogo,
+    youtubeId: 'dIdDinJpdPs',
     accent: '#b99b62',
     soft: '#f6f0e4',
     glow: 'rgba(185, 155, 98, 0.28)'
@@ -219,20 +220,33 @@ export default function ProjectSection() {
             <span></span>
             <span></span>
           </div>
-          <div className="cf-project-screen__stage">
-            <div className="cf-project-screen__play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
-            </div>
-            <div>
-              <p className="cf-project-screen__eyebrow">{activeProject.tag}</p>
-              <h3>{activeProject.title}</h3>
-              <p>{activeProject.body}</p>
-            </div>
-            <div className="cf-project-screen__progress" aria-hidden="true">
-              <span></span>
-            </div>
+          <div className={`cf-project-screen__stage ${activeProject.youtubeId ? 'cf-project-screen__stage--video' : ''}`}>
+            {activeProject.youtubeId ? (
+              <iframe
+                key={activeProject.youtubeId}
+                className="cf-project-screen__video"
+                title={`${activeProject.title} project preview video`}
+                src={`https://www.youtube.com/embed/${activeProject.youtubeId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${activeProject.youtubeId}&rel=0&modestbranding=1`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <>
+                <div className="cf-project-screen__play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+                    <path d="M8 5v14l11-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p className="cf-project-screen__eyebrow">{activeProject.tag}</p>
+                  <h3>{activeProject.title}</h3>
+                  <p>{activeProject.body}</p>
+                </div>
+                <div className="cf-project-screen__progress" aria-hidden="true">
+                  <span></span>
+                </div>
+              </>
+            )}
           </div>
           <div className="cf-project-screen__caption">
             Touch a project card to change this big preview screen.
@@ -582,6 +596,27 @@ function ProjectSectionStyles() {
     repeating-linear-gradient(90deg, rgba(45, 55, 72, 0.06) 0 1px, transparent 1px 42px),
     repeating-linear-gradient(0deg, rgba(45, 55, 72, 0.05) 0 1px, transparent 1px 42px);
   pointer-events: none;
+}
+
+.cf-project-screen__stage--video {
+  align-content: stretch;
+  padding: 0;
+  background: #050711;
+}
+
+.cf-project-screen__stage--video::before {
+  display: none;
+}
+
+.cf-project-screen__video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+  display: block;
+  background: #050711;
 }
 
 .cf-project-screen__play {
