@@ -1,0 +1,247 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body,div,input,select,button{font-family:'Inter',sans-serif;}
+.pg{background:#FDF6EF;min-height:100vh;padding:40px 20px 60px;}
+.inner{max-width:600px;margin:0 auto;}
+
+.badge{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #eee;border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:#333;margin-bottom:20px;}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:#F97316;}
+
+h1{font-size:36px;font-weight:800;color:#111;line-height:1.15;margin-bottom:8px;}
+h1 span{color:#F97316;}
+.sub{font-size:15px;color:#555;line-height:1.6;margin-bottom:32px;max-width:520px;}
+
+.sec-label{font-size:11px;font-weight:700;color:#F97316;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;margin-top:28px;}
+
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:600;color:#111;margin-bottom:6px;}
+.field label .opt{font-weight:400;color:#999;font-size:12px;}
+.field input,.field select{width:100%;border:1.5px solid #E5E7EB;border-radius:10px;padding:12px 16px;font-size:14px;color:#111;background:#fff;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus{border-color:#F97316;}
+.field input::placeholder{color:#bbb;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.proj-card{border:1.5px solid #E5E7EB;border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .18s;background:#fff;}
+.proj-card:hover{border-color:#F97316;background:#FFF7F0;}
+.proj-card.sel{border-color:#F97316;background:#FFF7F0;}
+.proj-card-icon{width:32px;height:32px;border-radius:8px;background:#FFF7F0;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:16px;}
+.proj-card.sel .proj-card-icon{background:#F97316;}
+.proj-card-name{font-size:13px;font-weight:700;color:#111;line-height:1.3;}
+.proj-card-tag{font-size:11px;color:#888;margin-top:3px;}
+
+.addon-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.addon-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;border:1.5px solid #E5E7EB;background:#fff;cursor:pointer;transition:all .18s;}
+.addon-item:hover{border-color:#F97316;}
+.addon-item.on{border-color:#F97316;background:#FFF7F0;}
+.addon-left{display:flex;align-items:center;gap:12px;}
+.addon-cb{width:18px;height:18px;border-radius:5px;border:2px solid #ddd;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.addon-item.on .addon-cb{background:#F97316;border-color:#F97316;}
+.addon-cb svg{display:none;}
+.addon-item.on .addon-cb svg{display:block;}
+.addon-name{font-size:14px;font-weight:600;color:#111;}
+.addon-desc{font-size:12px;color:#888;margin-top:2px;}
+.addon-price{text-align:right;flex-shrink:0;}
+.addon-new{font-size:15px;font-weight:800;color:#F97316;}
+.addon-old{font-size:12px;color:#bbb;text-decoration:line-through;display:block;}
+
+.divider{height:1px;background:#EBEBEB;margin:28px 0 0;}
+
+.confirm-wrap{margin-top:20px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;}
+.confirm-cb{width:18px;height:18px;border-radius:5px;border:2px solid #ddd;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.confirm-wrap.on .confirm-cb{background:#F97316;border-color:#F97316;}
+.confirm-cb svg{display:none;}
+.confirm-wrap.on .confirm-cb svg{display:block;}
+.confirm-txt{font-size:13px;color:#111;line-height:1.6;}
+
+.alert-row{display:flex;align-items:center;gap:6px;margin-top:10px;}
+.alert-dot{width:8px;height:8px;border-radius:50%;background:#F97316;flex-shrink:0;}
+.alert-txt{font-size:13px;color:#111;}
+.alert-txt s{color:#bbb;}
+.alert-txt strong{color:#111;font-weight:700;}
+
+.enroll-btn{margin-top:22px;width:100%;background:#F97316;color:#fff;border:none;border-radius:100px;padding:16px 28px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .18s,transform .12s;font-family:'Inter',sans-serif;}
+.enroll-btn:hover{background:#E06010;}
+.enroll-btn:active{transform:scale(0.98);}
+.enroll-btn:disabled{background:#FDBA74;cursor:not-allowed;}
+.enroll-btn .arr{width:22px;height:22px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+.success{display:none;text-align:center;padding:32px 0 16px;}
+.success-icon{font-size:48px;margin-bottom:12px;}
+.success h2{font-size:22px;font-weight:800;color:#111;margin-bottom:6px;}
+.success p{font-size:14px;color:#555;}
+
+@media(max-width:480px){
+  h1{font-size:28px;}
+  .two{grid-template-columns:1fr;}
+  .proj-grid{grid-template-columns:1fr;}
+}
+</style>
+
+<div class="pg">
+<div class="inner">
+  <div class="badge"><span class="badge-dot"></span>Internship Program &nbsp;|&nbsp; Real World Experience</div>
+  <h1>Start Your Enrollment<br><span>with CodeForge</span></h1>
+  <p class="sub">Fill in your details below to join the 1-month internship program built for college students who want real hands-on coding experience.</p>
+
+  <div class="sec-label">Personal Details</div>
+  <div class="field">
+    <label>Full name</label>
+    <input id="f-name" type="text" placeholder="Priya Sharma" />
+  </div>
+  <div class="field">
+    <label>Email address</label>
+    <input id="f-email" type="email" placeholder="priya@email.com" />
+  </div>
+  <div class="two">
+    <div class="field">
+      <label>Phone number</label>
+      <input id="f-phone" type="tel" placeholder="+91 98765 43210" />
+    </div>
+    <div class="field">
+      <label>Secondary phone <span class="opt">(optional)</span></label>
+      <input id="f-phone2" type="tel" placeholder="+91 98765 43211" />
+    </div>
+  </div>
+
+  <div class="sec-label">Course</div>
+  <div class="field">
+    <label>Select your degree course</label>
+    <select id="f-course">
+      <option value="">— Choose a course —</option>
+      <option value="bca">BCA — Bachelor of Computer Applications</option>
+      <option value="bsc">BSc — Bachelor of Science</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div class="sec-label">Select a Project</div>
+
+  <div class="proj-grid" id="proj-grid">
+    <div class="proj-card" data-p="1"><div class="proj-card-icon">🏥</div><div class="proj-card-name">Health Disease Predictor</div><div class="proj-card-tag">ML · Python</div></div>
+    <div class="proj-card" data-p="2"><div class="proj-card-icon">📦</div><div class="proj-card-name">QR Code Generator</div><div class="proj-card-tag">Flask · Python</div></div>
+    <div class="proj-card" data-p="3"><div class="proj-card-icon">🛒</div><div class="proj-card-name">E-Commerce Platform</div><div class="proj-card-tag">React · Node</div></div>
+    <div class="proj-card" data-p="4"><div class="proj-card-icon">✍️</div><div class="proj-card-name">Blog CMS System</div><div class="proj-card-tag">Django · SQL</div></div>
+    <div class="proj-card" data-p="5"><div class="proj-card-icon">🎓</div><div class="proj-card-name">Student Portal</div><div class="proj-card-tag">React · Firebase</div></div>
+    <div class="proj-card" data-p="6"><div class="proj-card-icon">💸</div><div class="proj-card-name">Expense Tracker</div><div class="proj-card-tag">Vue · MongoDB</div></div>
+    <div class="proj-card" data-p="7"><div class="proj-card-icon">🌤️</div><div class="proj-card-name">Weather Dashboard</div><div class="proj-card-tag">API · JavaScript</div></div>
+    <div class="proj-card" data-p="8"><div class="proj-card-icon">💬</div><div class="proj-card-name">Chat Application</div><div class="proj-card-tag">Socket.io · Node</div></div>
+    <div class="proj-card" data-p="9"><div class="proj-card-icon">📚</div><div class="proj-card-name">Library Management</div><div class="proj-card-tag">PHP · MySQL</div></div>
+    <div class="proj-card" data-p="10"><div class="proj-card-icon">💼</div><div class="proj-card-name">Job Portal</div><div class="proj-card-tag">React · Express</div></div>
+    <div class="proj-card" data-p="11"><div class="proj-card-icon">🍽️</div><div class="proj-card-name">Restaurant Booking</div><div class="proj-card-tag">Flask · SQL</div></div>
+    <div class="proj-card" data-p="12"><div class="proj-card-icon">📊</div><div class="proj-card-name">Inventory System</div><div class="proj-card-tag">Django · Charts</div></div>
+    <div class="proj-card" data-p="13"><div class="proj-card-icon">🧠</div><div class="proj-card-name">Online Quiz App</div><div class="proj-card-tag">React · Firebase</div></div>
+    <div class="proj-card" data-p="14"><div class="proj-card-icon">📱</div><div class="proj-card-name">Social Media Dashboard</div><div class="proj-card-tag">Next.js · API</div></div>
+    <div class="proj-card" data-p="15"><div class="proj-card-icon">✅</div><div class="proj-card-name">Task Manager (Kanban)</div><div class="proj-card-tag">React · DnD</div></div>
+    <div class="proj-card" data-p="16"><div class="proj-card-icon">📝</div><div class="proj-card-name">Notes & Reminder App</div><div class="proj-card-tag">Flutter · Dart</div></div>
+    <div class="proj-card" data-p="17"><div class="proj-card-icon">🏨</div><div class="proj-card-name">Hotel Booking System</div><div class="proj-card-tag">Flask · MySQL</div></div>
+    <div class="proj-card" data-p="18"><div class="proj-card-icon">🚀</div><div class="proj-card-name">Food Delivery Clone</div><div class="proj-card-tag">React · Maps API</div></div>
+    <div class="proj-card" data-p="19"><div class="proj-card-icon">🏋️</div><div class="proj-card-name">Fitness Tracker App</div><div class="proj-card-tag">React Native</div></div>
+    <div class="proj-card" data-p="20"><div class="proj-card-icon">🤖</div><div class="proj-card-name">AI Chatbot Interface</div><div class="proj-card-tag">Python · OpenAI</div></div>
+  </div>
+
+  <div class="sec-label" style="margin-top:28px;">Add-on Courses</div>
+  <div class="addon-list" id="addon-list">
+    <div class="addon-item" data-a="ds">
+      <div class="addon-left">
+        <div class="addon-cb"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5L4 7.5L8.5 2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="addon-name">Data Science Bootcamp</div>
+          <div class="addon-desc">Python · Pandas · ML · Visualization</div>
+        </div>
+      </div>
+      <div class="addon-price"><span class="addon-old">₹2,499</span><span class="addon-new">₹199</span></div>
+    </div>
+    <div class="addon-item" data-a="da">
+      <div class="addon-left">
+        <div class="addon-cb"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5L4 7.5L8.5 2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="addon-name">Data Analyst Course</div>
+          <div class="addon-desc">Excel · SQL · Power BI · Tableau</div>
+        </div>
+      </div>
+      <div class="addon-price"><span class="addon-old">₹2,499</span><span class="addon-new">₹199</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="confirm-wrap" id="confirm-wrap">
+    <div class="confirm-cb"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5L4 7.5L8.5 2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="confirm-txt" id="confirm-txt">I have reviewed all the information I filled in and confirm it is correct.</div>
+  </div>
+
+  <div class="alert-row">
+    <div class="alert-dot"></div>
+    <div class="alert-txt">Alert — price for first 50 students is <s>₹2,000</s> <strong>₹1,599</strong></div>
+  </div>
+
+  <button class="enroll-btn" id="enroll-btn" disabled>
+    Enroll Now <span class="arr">→</span>
+  </button>
+
+  <div class="success" id="success-msg">
+    <div class="success-icon">🎉</div>
+    <h2>You're enrolled!</h2>
+    <p>Check your email for next steps. Welcome to CodeForge.</p>
+  </div>
+</div>
+</div>
+
+<script>
+var selProj = null, confirmed = false;
+
+document.querySelectorAll('.proj-card').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.proj-card').forEach(function(x){x.classList.remove('sel');});
+    c.classList.add('sel');
+    selProj = c.dataset.p;
+    updateConfirm();
+    checkBtn();
+  });
+});
+
+document.querySelectorAll('.addon-item').forEach(function(a){
+  a.addEventListener('click', function(){a.classList.toggle('on');});
+});
+
+document.getElementById('confirm-wrap').addEventListener('click', function(){
+  confirmed = !confirmed;
+  this.classList.toggle('on', confirmed);
+  checkBtn();
+});
+
+['f-name','f-email','f-phone','f-course'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(){
+    updateConfirm();
+    checkBtn();
+  });
+});
+
+function updateConfirm(){
+  var n = document.getElementById('f-name').value.trim()||'your name';
+  var e = document.getElementById('f-email').value.trim()||'your email';
+  var s = document.getElementById('f-course');
+  var c = s.value ? s.options[s.selectedIndex].text : 'your course';
+  var pEl = selProj ? document.querySelector('[data-p="'+selProj+'"] .proj-card-name') : null;
+  var p = pEl ? pEl.textContent : 'your project';
+  document.getElementById('confirm-txt').innerHTML =
+    'I confirm all details are correct — <strong>'+n+'</strong>, <strong>'+e+'</strong>, course: <strong>'+c+'</strong>, project: <strong>'+p+'</strong>.';
+}
+
+function checkBtn(){
+  var ok = document.getElementById('f-name').value.trim() &&
+           document.getElementById('f-email').value.trim() &&
+           document.getElementById('f-phone').value.trim() &&
+           document.getElementById('f-course').value &&
+           selProj && confirmed;
+  document.getElementById('enroll-btn').disabled = !ok;
+}
+
+document.getElementById('enroll-btn').addEventListener('click', function(){
+  document.getElementById('success-msg').style.display = 'block';
+  this.style.display = 'none';
+});
+</script>
