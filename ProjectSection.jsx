@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import campusBooksLogo from './src/assets/campusbooks_4k_wallpaper.png';
+import farmerFriendLogo from './src/assets/FarmerFriend_Logo_4K.png';
 import inkwellLogo from './src/assets/inkwell_4k_wallpaper.png';
+import vitalisLogo from './src/assets/vitalis_4k_wallpaper.png';
 
 const projects = [
   {
@@ -9,10 +12,47 @@ const projects = [
     tag: 'Lifestyle',
     body: 'A personal diary experience for private notes, memories, and daily reflections.',
     image: inkwellLogo,
-    youtubeId: 'dIdDinJpdPs',
+    youtubeId: '_oqEXXlasT8',
     accent: '#b99b62',
     soft: '#f6f0e4',
     glow: 'rgba(185, 155, 98, 0.28)'
+  },
+  {
+    id: 'campusbooks',
+    label: 'Books',
+    title: 'CampusBooks',
+    tag: 'Educational',
+    body: 'A campus study material marketplace for selling, borrowing, and sharing books.',
+    image: campusBooksLogo,
+    youtubeId: 'KzLGPgg2Dlc',
+    accent: '#2f8f3b',
+    soft: '#e9f7e8',
+    glow: 'rgba(47, 143, 59, 0.28)'
+  },
+  {
+    id: 'farmerfriend',
+    label: 'Farm',
+    title: 'FarmerFriend',
+    tag: 'Agricultural',
+    body: 'An agriculture support app for farmers to grow, connect, and make informed decisions.',
+    image: farmerFriendLogo,
+    imageFit: 'contain',
+    youtubeId: 'DDB-iU6F8Fo',
+    accent: '#d99a2b',
+    soft: '#eef7e8',
+    glow: 'rgba(217, 154, 43, 0.28)'
+  },
+  {
+    id: 'vitalis',
+    label: 'Health',
+    title: 'Vitalis',
+    tag: 'Health',
+    body: 'A personal health companion for tracking wellness, medication, hydration, and mood.',
+    image: vitalisLogo,
+    imageFit: 'contain',
+    accent: '#14c8b8',
+    soft: '#e7fbf8',
+    glow: 'rgba(20, 200, 184, 0.28)'
   },
   {
     id: 'healthcare',
@@ -131,7 +171,7 @@ function useProjectWheel(trackRef, setActiveIndex, totalItems) {
 
 export default function ProjectSection() {
   const trackRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(1);
   const activeProject = projects[activeIndex];
 
   useProjectWheel(trackRef, setActiveIndex, projects.length);
@@ -194,7 +234,13 @@ export default function ProjectSection() {
                   >
                     <span className="cf-project-pill__shine" aria-hidden="true"></span>
                     <span className="cf-project-pill__image" aria-hidden="true">
-                      {project.image ? <img src={project.image} alt="" /> : <span>{project.label}</span>}
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt=""
+                          style={{ '--project-image-fit': project.imageFit || 'cover' }}
+                        />
+                      ) : <span>{project.label}</span>}
                     </span>
                     <span className="cf-project-pill__content">
                       <span className="cf-project-pill__label">{project.title}</span>
@@ -507,7 +553,8 @@ function ProjectSectionStyles() {
 .cf-project-pill__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: var(--project-image-fit, cover);
+  object-position: center;
 }
 
 .cf-project-pill__image span {
