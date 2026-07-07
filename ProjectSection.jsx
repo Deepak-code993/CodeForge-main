@@ -36,7 +36,7 @@ const projects = [
     tag: 'Agricultural',
     body: 'An agriculture support app for farmers to grow, connect, and make informed decisions.',
     image: farmerFriendLogo,
-    imageFit: 'contain',
+    imageFit: 'fill',
     youtubeId: 'DDB-iU6F8Fo',
     accent: '#d99a2b',
     soft: '#eef7e8',
@@ -49,7 +49,7 @@ const projects = [
     tag: 'Health',
     body: 'A personal health companion for tracking wellness, medication, hydration, and mood.',
     image: vitalisLogo,
-    imageFit: 'contain',
+    imageFit: 'fill',
     accent: '#14c8b8',
     soft: '#e7fbf8',
     glow: 'rgba(20, 200, 184, 0.28)'
