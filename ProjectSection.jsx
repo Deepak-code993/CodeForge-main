@@ -50,6 +50,7 @@ const projects = [
     body: 'A personal health companion for tracking wellness, medication, hydration, and mood.',
     image: vitalisLogo,
     imageFit: 'fill',
+    youtubeId: 'qm0kvLszzDo',
     accent: '#14c8b8',
     soft: '#e7fbf8',
     glow: 'rgba(20, 200, 184, 0.28)'
