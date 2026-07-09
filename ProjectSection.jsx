@@ -3,6 +3,7 @@ import campusBooksLogo from './src/assets/campusbooks_4k_wallpaper.png';
 import farmerFriendLogo from './src/assets/FarmerFriend_Logo_4K.png';
 import inkwellLogo from './src/assets/inkwell_4k_wallpaper.png';
 import vitalisLogo from './src/assets/vitalis_4k_wallpaper.png';
+import freshtech_store from './src/assets/freshtech_store_4k_logo.png';
 
 const projects = [
   {
@@ -12,6 +13,18 @@ const projects = [
     tag: 'Lifestyle',
     body: 'A personal diary experience for private notes, memories, and daily reflections.',
     image: inkwellLogo,
+    youtubeId: '_oqEXXlasT8',
+    accent: '#b99b62',
+    soft: '#f6f0e4',
+    glow: 'rgba(185, 155, 98, 0.28)'
+  },
+  {
+    id: 'freshtech_store',
+    label: 'store',
+    title: 'freshtech_store',
+    tag: 'Ecommerce',
+    body: 'A platform where you can get grocerries and tech toools.',
+    image: freshtech_store,
     youtubeId: '_oqEXXlasT8',
     accent: '#b99b62',
     soft: '#f6f0e4',
