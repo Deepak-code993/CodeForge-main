@@ -25,7 +25,7 @@ const projects = [
     tag: 'Ecommerce',
     body: 'A platform where you can get grocerries and tech toools.',
     image: freshtech_store,
-    youtubeId: '_oqEXXlasT8',
+    youtubeId: 'HTnOvTN0jCc',
     accent: '#b99b62',
     soft: '#f6f0e4',
     glow: 'rgba(185, 155, 98, 0.28)'
