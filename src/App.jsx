@@ -361,7 +361,7 @@ function App() {
         <ProjectSection />
         <Certificate />
 
-        <Pricing onEnroll={goToEnrollment} />
+        <Pricing />
       </main>
 
       <Footer />
@@ -901,35 +901,93 @@ function Certificate() {
   );
 }
 
-function Pricing({ onEnroll }) {
+function Pricing() {
+  const pricingCourses = [
+    {
+      id: 'php-mysql',
+      name: 'PHP and MySQL',
+      price: '1700',
+      features: ['Backend project training', 'Database design with MySQL', 'Guided project completion']
+    },
+    {
+      id: 'python-data-science',
+      name: 'PYTHON+DATA SCIENCE',
+      price: '1700',
+      features: ['Python programming basics', 'Data analysis workflow', 'Project with data science concepts']
+    },
+    {
+      id: 'python-flask',
+      name: 'PYTHON(Flask)',
+      price: '1700',
+      features: ['Flask web application basics', 'API and backend routing', 'Project-ready web app structure']
+    }
+  ];
+  const [pricingPopup, setPricingPopup] = useState(null);
+
+  const showPricingInfo = (course, type) => {
+    setPricingPopup({
+      course: course.name,
+      type,
+      message: type === 'internship'
+        ? 'By choosing this option you get 30 days internship along with certificate and project.'
+        : 'By choosing this option you will get project only.'
+    });
+  };
+
   return (
     <section id="pricing" className="pricing">
       <h2 className="section-title">Pricing</h2>
-      <p className="section-sub">Two ways in. Both end with something you can show.</p>
+      <p className="section-sub">Choose a course package based on the outcome you want.</p>
       <div className="plan-grid">
-        <div className="plan">
-          <p className="plan__name">Python Track</p>
-          <p className="plan__price"><span>Rs.</span>1800</p>
-          <ul className="plan__list">
-            <li>Python, Data Science &amp; MySQL</li>
-            <li>30-day language curriculum</li>
-            <li>Guided practice projects</li>
-          </ul>
-          <button className="btn btn--ghost btn--full" onClick={onEnroll}>Choose Python</button>
-        </div>
-        <div className="plan plan--featured">
-          <p className="plan__ribbon">Most Chosen</p>
-          <p className="plan__name">Internship + Project + Certificate</p>
-          <p className="plan__price"><span>Rs.</span>1900</p>
-          <ul className="plan__list">
-            <li>1-month full internship</li>
-            <li>30 days language + 10 days project-focused teaching</li>
-            <li>40+ hours of hands-on project work</li>
-            <li>Certificate from CodeForge</li>
-          </ul>
-          <button className="btn btn--primary btn--full" onClick={onEnroll}>Choose Internship</button>
-        </div>
+        {pricingCourses.map((course, index) => (
+          <div className={`plan ${index === 1 ? 'plan--featured' : ''}`} key={course.id}>
+            {index === 1 && <p className="plan__ribbon">Popular</p>}
+            <p className="plan__name">{course.name}</p>
+            <p className="plan__price"><span>Rs.</span>{course.price}</p>
+            <ul className="plan__list">
+              {course.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <div className="plan__actions">
+              <button className="btn btn--primary btn--full" onClick={() => showPricingInfo(course, 'internship')}>
+                Choose {course.name} Internship
+              </button>
+              <button className="btn btn--ghost btn--full" onClick={() => showPricingInfo(course, 'project')}>
+                Choose {course.name} Project Only
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
+      {pricingPopup && (
+        <div className="pricing-popup" role="presentation" onClick={() => setPricingPopup(null)}>
+          <div
+            className="pricing-popup__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pricing-popup-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="pricing-popup__close"
+              aria-label="Close pricing information"
+              onClick={() => setPricingPopup(null)}
+            >
+              x
+            </button>
+            <p className="pricing-popup__eyebrow">
+              {pricingPopup.type === 'internship' ? 'Internship Option' : 'Project Only Option'}
+            </p>
+            <h3 id="pricing-popup-title">{pricingPopup.course}</h3>
+            <p>{pricingPopup.message}</p>
+            <button type="button" className="btn btn--primary btn--full" onClick={() => setPricingPopup(null)}>
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
